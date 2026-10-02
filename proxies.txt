@@ -1,0 +1,8 @@
+# AgentSearch Proxy List
+# Formats: http://host:port | https://host:port | socks5://host:port | socks5h://host:port
+# An omitted scheme defaults to http://.
+
+# Examples only; replace these with your own proxies:
+# http://127.0.0.1:8080
+# socks5://127.0.0.1:1080
+# http://user:pass@proxy.example.com:3128

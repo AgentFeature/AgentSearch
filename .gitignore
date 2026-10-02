@@ -1,0 +1,49 @@
+# Local build outputs; never package an operator-owned corpus with source.
+/agentsearch
+/agentsearch.exe
+/agentsearch-corpus
+/agentsearch-corpus.exe
+/convert
+/convert.exe
+/pwned-db/
+/corpus-staging/
+/agentsearch-server
+/agentsearch-server.exe
+
+# Private continuous-watch baselines and observations.
+/agentsearch-watch/
+
+# Local credentials and environment overrides (templates may be versioned).
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+
+# Generated investigation reports and local profiling/coverage output.
+/output/
+/results/
+/coverage/
+/coverage.out
+/*.test
+/*.prof
+
+# Local model weights are not project source.
+*.gguf
+*.safetensors
+
+# Editor, OS and Python validation caches.
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+__pycache__/
+.pytest_cache/
+.venv/
+.cache/

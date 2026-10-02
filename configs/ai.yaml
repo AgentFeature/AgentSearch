@@ -1,0 +1,11 @@
+# Separate from reconnaissance services. No credentials belong in this file.
+# Both enabled:true and CLI -ai (or an API analysis:true request) are required.
+ai:
+  enabled: false
+  provider: openai-compatible
+  endpoint: https://api.openai.com/v1/chat/completions
+  model: gpt-4o-mini
+  api_key_env: OPENAI_API_KEY
+  timeout: 30s
+  max_input_bytes: 65536
+  max_output_tokens: 2048

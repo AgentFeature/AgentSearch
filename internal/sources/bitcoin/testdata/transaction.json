@@ -1,0 +1,33 @@
+{
+  "txid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "version": 2,
+  "locktime": 0,
+  "size": 200,
+  "weight": 800,
+  "fee": 10,
+  "vin": [
+    {
+      "txid": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "vout": 1,
+      "is_coinbase": false,
+      "prevout": {
+        "value": 110,
+        "scriptpubkey_address": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+        "scriptpubkey_type": "p2pkh"
+      }
+    }
+  ],
+  "vout": [
+    {
+      "value": 100,
+      "scriptpubkey_address": "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy",
+      "scriptpubkey_type": "p2sh"
+    }
+  ],
+  "status": {
+    "confirmed": true,
+    "block_height": 800000,
+    "block_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "block_time": 1700000000
+  }
+}

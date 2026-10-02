@@ -1,0 +1,167 @@
+# AgentSearch Site Database (YAML)
+# Uses the native site schema with Sherlock/Maigret conversion support.
+# Supported check_type values: status_code | message | response_url | header
+
+- name: GitHub
+  url: https://github.com/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 20
+  presence_strs:
+    - "p-nickname"
+  waf_indicators:
+    status_codes: [403]
+    header_keys: ["CF-RAY"]
+
+- name: Twitter/X
+  url: https://x.com/{username}
+  check_type: message
+  absence_strs:
+    - "page doesn’t exist"
+    - "This account doesn’t exist"
+  presence_strs:
+    - '"screen_name":"{username}"'
+  weight: 25
+  waf_indicators:
+    body_substrings: ["cf-error-code"]
+
+- name: Reddit
+  url: https://www.reddit.com/user/{username}/
+  check_type: status_code
+  error_code: 404
+  weight: 15
+  headers:
+    User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+- name: Instagram
+  url: https://www.instagram.com/{username}/
+  check_type: message
+  absence_strs:
+    - "Sorry, this page isn't available."
+  presence_strs:
+    - 'meta property="og:title"'
+  weight: 20
+  waf_indicators:
+    header_keys: ["X-Instagram-Static-Map"]
+
+- name: VK
+  url: https://vk.com/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 10
+  tags: ["ru", "social"]
+
+- name: VK_by_id
+  url: https://vk.com/id{username}
+  check_type: response_url
+  error_url: "vk.com/blank.php"
+  weight: 10
+  tags: ["ru", "social"]
+
+- name: Linktree
+  url: https://linktr.ee/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 10
+
+- name: Telegram
+  url: https://t.me/{username}
+  check_type: message
+  absence_strs:
+    - "If you have <strong>Telegram</strong>, you can contact <a"
+  presence_strs:
+    - "tgme_page_title"
+  weight: 15
+
+- name: Calendly
+  url: https://calendly.com/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 10
+
+- name: DevTo
+  url: https://dev.to/{username}
+  check_type: message
+  absence_strs:
+    - "404 - Page Not Found"
+  presence_strs:
+    - "profile-header__meta"
+  weight: 12
+
+- name: Medium
+  url: https://medium.com/@{username}
+  check_type: status_code
+  error_code: 404
+  weight: 12
+
+- name: Spotify
+  url: https://open.spotify.com/user/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 14
+
+- name: Pinterest
+  url: https://www.pinterest.com/{username}/
+  check_type: message
+  absence_strs:
+    - "Sorry, we couldn't find that page"
+  presence_strs:
+    - "pinterest"
+  weight: 14
+
+- name: TikTok
+  url: https://www.tiktok.com/@{username}
+  check_type: message
+  absence_strs:
+    - "Couldn't find this account"
+  presence_strs:
+    - "user-title"
+  weight: 18
+
+- name: Twitch
+  url: https://www.twitch.tv/{username}
+  check_type: message
+  absence_strs:
+    - "Sorry. Unless you've got a time machine"
+  presence_strs:
+    - "channel-header"
+  weight: 16
+
+- name: YouTube
+  url: https://www.youtube.com/@{username}
+  check_type: message
+  absence_strs:
+    - "Not found"
+  presence_strs:
+    - "channel-name"
+  weight: 20
+
+- name: DockerHub
+  url: https://hub.docker.com/u/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 10
+
+- name: Steam
+  url: https://steamcommunity.com/id/{username}
+  check_type: message
+  absence_strs:
+    - "The specified profile could not be found"
+  presence_strs:
+    - "actual_persona_name"
+  weight: 14
+
+- name: Keybase
+  url: https://keybase.io/{username}
+  check_type: status_code
+  error_code: 404
+  weight: 10
+
+- name: Patreon
+  url: https://www.patreon.com/{username}
+  check_type: message
+  absence_strs:
+    - "Whoa there!"
+  presence_strs:
+    - "creator-name"
+  weight: 12

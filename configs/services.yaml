@@ -1,0 +1,50 @@
+# Loaded for -email/-domain/-ip/-bitcoin, or when explicitly passed to password mode/server.
+# Legacy -u/-f searches ignore it. Providers default to disabled.
+# Each mode initializes only its compatible configured sources.
+# Only an environment variable NAME belongs here, never a key value.
+services:
+  hibp:
+    enabled: false
+    api_url: "https://haveibeenpwned.com/api/v3"
+    api_key_env: "HIBP_API_KEY"
+    # Optional password endpoint override; no API key is read or transmitted.
+    # An explicit password flag is its own opt-in, independent of email enabled.
+    passwords_api_url: "https://api.pwnedpasswords.com/range"
+    # Optional managed local root; it never selects the backend automatically.
+    # Relative paths use the working directory. CLI -password-db overrides this.
+    # passwords_database_path: "./pwned-db"
+
+  # Requires an API subscription/license permitting your internal security use.
+  # No public redistribution or third-party service rights are implied.
+  securitytrails:
+    enabled: false
+    api_url: "https://api.securitytrails.com/v1"
+    api_key_env: "SECURITYTRAILS_API_KEY"
+    # Per-client request-start spacing, not a monthly/account-wide quota ledger.
+    min_interval: "1s"
+
+  # IPinfo Lite requires a free account token; review API/data usage terms.
+  ipinfo:
+    enabled: false
+    api_url: "https://api.ipinfo.io/lite"
+    api_key_env: "IPINFO_API_KEY"
+
+  # Key-free Blockstream Esplora, confirmed Bitcoin mainnet observations only.
+  # Review the provider's terms/rate policy before enabling. No recursive lookups.
+  bitcoin:
+    enabled: false
+    api_url: "https://blockstream.info/api"
+    min_interval: "1s"
+
+  # Optional independent provider associations, NOT verified ownership.
+  # Runs for the same -bitcoin / API bitcoin target, even if bitcoin is disabled.
+  bitcoin_labels:
+    enabled: false
+    api_url: "https://www.walletexplorer.com/api/1/address-lookup"
+    min_interval: "1s"
+
+  # Independent opt-in: one passive mainnet transaction lookup, no enrichment.
+  bitcoin_tx:
+    enabled: false
+    api_url: "https://blockstream.info/api"
+    min_interval: "1s"
